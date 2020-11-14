@@ -13,21 +13,18 @@ const App = () => {
 
   const total = <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
   const course = 'Half Stack application development'
-  const content =  <div><p>
-  {part1} {exercises1}
-</p>
-<p>
-  {part2} {exercises2}
-</p>
-<p>
-  {part3} {exercises3}
-</p>
-</div>
 
   return (
     <div>
       <Header course={course} />
-      <Content content={content}/>
+      <Content 
+      part1={part1}
+      part2={part2}
+      part3={part3}
+      exercises1={exercises1}
+      exercises2={exercises2}
+      exercises3={exercises3}
+      />
       <Total total={total} />
     </div>
   )
@@ -44,9 +41,13 @@ const Header = (props) => {
 }
 
 const Content = (props) => {
-  console.log(props)
+ 
   return (
-      props.content
+    <div>
+      <Part part={props.part1}exercise={props.exercises1}/>
+      <Part part={props.part2}exercise={props.exercises2}/>
+      <Part part={props.part3}exercise={props.exercises3}/>
+    </div>
   )
 }
 
@@ -56,6 +57,17 @@ const Total = (props) => {
         {props.total}
     </div>
     )
+}
+
+const Part = (props) => {
+  console.log(props);
+  return (
+    <div>
+      <p>
+        {props.part} {props.exercise}
+      </p>
+    </div>
+  )
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
